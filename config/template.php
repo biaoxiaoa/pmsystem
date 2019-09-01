@@ -41,5 +41,7 @@ return [
         'winui_css' => '/static/lib/layui/extend/winui/css/winui.css',
         'font_css'  => '/static/lib/layui/font/font.css',
         'main_js'  => '/static/js/main.js',
+
+        'login_js' => '/static/js/login.js'
     ]
 ];

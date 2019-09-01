@@ -15,7 +15,14 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+/***********登录相关**************/
+//登录界面
 Route::get('login', 'login/login/index');
+//验证码
+Route::get('coder', 'login/login/Captcha');
+//登录校验
+Route::rule('/submit_login','login/login/submit_login','POST');
+
 
 return [
 
