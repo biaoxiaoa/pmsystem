@@ -32,4 +32,14 @@ return [
     'taglib_begin' => '{',
     // 标签库标签结束标记
     'taglib_end'   => '}',
+    'tpl_replace_string' => [
+        'jquery_js' => '/static/lib/jquery/jquery.min.js',
+        'layui_js'  => '/static/lib/layui/layui.js',
+        'layui_css' => '/static/lib/layui/css/layui.css',
+        'animate_css' => '/static/lib/layui/extend/winui/lib/animate/animate.min.css',
+        'font-awesome_css' => '/static/lib/layui/extend/winui/lib/font-awesome-4.7.0/css/font-awesome.min.css',
+        'winui_css' => '/static/lib/layui/extend/winui/css/winui.css',
+        'font_css'  => '/static/lib/layui/font/font.css',
+        'main_js'  => '/static/js/main.js',
+    ]
 ];
