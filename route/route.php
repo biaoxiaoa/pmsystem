@@ -22,8 +22,11 @@ Route::get('login', 'login/login/index');
 Route::get('coder', 'login/login/Captcha');
 //登录校验
 Route::rule('/submit_login','login/login/submit_login','POST');
-
-
+/***********菜单相关**************/
+//菜单管理界面
+Route::get('menu', 'menu/Index/index');
+//菜单添加界面
+Route::get('menu_add', 'menu/Index/menu_add');
 return [
 
 ];

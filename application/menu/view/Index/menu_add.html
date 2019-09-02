@@ -1,0 +1,93 @@
+{extend name="../public/template/template.html"}
+{block name="head"}
+{__block__}
+
+<head>
+    <link rel="stylesheet" href="font-awesome_css">
+    <link rel="stylesheet" href="winui_css">
+    <style>
+        .desk_name {
+            display: none;
+        }
+    </style>
+</head>
+{/block}
+{block name="title"}添加菜单{/block}
+{block name="body"}
+{__block__}
+
+<body>
+        <div style="width:90%;margin:0 auto;padding-top:20px;">
+                <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                                <label class="layui-form-label">选择框</label>
+                                <div class="layui-input-block">
+                                  <select name="city" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">北京</option>
+                                    <option value="1">上海</option>
+                                    <option value="2">广州</option>
+                                    <option value="3">深圳</option>
+                                    <option value="4">杭州</option>
+                                  </select>
+                                </div>
+                              </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">菜单名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="title" placeholder="请输入菜单名称" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" pane>
+                        <label class="layui-form-label">桌面显示</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" id="desk" type="checkbox" name="desk_show" lay-skin="switch" lay-text="显示|隐藏"
+                                lay-filter="show">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图标名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="icon" lay-verify="icon" placeholder="请输入图标名称" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">模块名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="module" lay-verify="module" placeholder="请输入模块名称" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">控制器名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="controller" lay-verify="controller" placeholder="请输入控制器名称"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">方法名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="action" lay-verify="action" placeholder="请输入方法名称" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面地址</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="pageURL" placeholder="请输入页面地址" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">填写路由后的地址。为空时根据模块/控制器/方法自动生成。</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="menu_add">立即提交</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tips">Tips：请勿随意添加菜单，以免造成数据错乱！</div>
+            </div>
+</body>
+{/block}

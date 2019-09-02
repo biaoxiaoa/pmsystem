@@ -42,6 +42,10 @@ return [
         'font_css'  => '/static/lib/layui/font/font.css',
         'main_js'  => '/static/js/main.js',
 
-        'login_js' => '/static/js/login.js'
+        'login_js' => '/static/js/login.js',
+        /**
+         * menu
+        */
+        'menu_js'  => '/static/js/menu/menu.js'
     ]
 ];

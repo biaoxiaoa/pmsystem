@@ -1,5 +1,6 @@
 <?php
 namespace Behavior;
+use think\Session;
 use Service\JsonService;
 use app\login\model\Admin as AdminModel;
 use app\login\validate\Admin as AdminValidate;
@@ -27,6 +28,19 @@ class LoginBehavior{
         $model->logintime = Time::getNowTime(0);
         $model->loginip = $info['loginip'];
         $res = $model->save();
+        $session = new Session();
+        $session->set('userId',$model->id);
+        $session->set('userInfo',$model);
+
         return JsonService::successResponse('登录成功');
+    }
+    /**
+     * 是否登录
+     */
+    static public function hasActiveUser()
+    {
+        $session = new Session();
+        
+        return $session->has('userId') && $session->has('userInfo');
     }
 }

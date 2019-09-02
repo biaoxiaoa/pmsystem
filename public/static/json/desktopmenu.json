@@ -5,17 +5,17 @@
     {
       "title": "主题2",
       "pageURL": "theme",
-      "name": "主题2",
+      "name": "主题",
       "icon": "fa-television",
       "openType": 2,
       "maxOpen": -1,
-      "extend": true,
+      "extend": false,
       "childs": null,
       "id": 1
     },
     {
       "title": "菜单管理",
-      "pageURL": "/index.php/Set/Menu/Index",
+      "pageURL": "/menu",
       "name": "菜单管理",
       "icon": "fa-list",
       "openType": 2,
