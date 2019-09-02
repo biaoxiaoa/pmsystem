@@ -36,11 +36,13 @@ layui.use(['form', 'layer'], function () {
         }
     })
     form.on('submit(login)', function (data) {
+        $('#login').attr('disabled',true);
         $.ajax({
             type: 'post',
             url: '/submit_login',
             data: data.field,
             success: function (response) {
+                $('#login').removeAttr('disabled');
                 if($('#vercode').val().length>0){
                     verify_code();
                 }
@@ -50,9 +52,12 @@ layui.use(['form', 'layer'], function () {
                         content: response.msg,
                         icon: 2
                     });
+                }else{
+                    window.location.href = '/index.php';
                 }
             },
             error: function (error) {
+                $('#login').removeAttr('disabled');
                 if($('#vercode').val().length>0){
                     verify_code();
                 }
