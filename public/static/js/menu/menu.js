@@ -9,10 +9,10 @@ layui.use(['table','form'], function () {
             title:'菜单添加',
             type:2,
             content:'/menu_add',
-            area:['700px','350px'],
+            area:['840px','675px'],
         })
     })
 
-
+    
 
 })

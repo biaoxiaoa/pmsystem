@@ -26,4 +26,18 @@ class Index extends AuthBase
         $info = input('post.');
         return MenuBehavior::menu_add($info);
     }
+    /**
+     * 桌面菜单
+     */
+    public function menu_desk()
+    {
+        return MenuBehavior::menu_desk();
+    }
+    /**
+     * 所有菜单
+     */
+    public function menu()
+    {
+        return MenuBehavior::menu();
+    }
 }

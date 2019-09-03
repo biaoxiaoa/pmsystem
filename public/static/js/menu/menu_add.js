@@ -115,12 +115,34 @@ layui.use(['table','form'], function () {
             url:'/submit_menu_add',
             data:data.field,
             success:function(response){
-                console.log(response);
+                if(response.code==2000){
+                    location.reload();
+                    parent.frameElement.contentWindow.layui.table.reload('list')
+                    parent.parent.winui.desktop.init();
+                }else{
+                    layer.msg(response.msg)
+                }
             },
             error:function(error){
                 console.log(error);
             }
         })
         return false;
+    })
+    $.ajax({
+        url: '/menu_all',
+        dataType: 'json',
+            //查询状态为正常的所有机构类型
+        type: 'get',
+        success: function (data) {
+           
+            $.each(data, function (index, item) {
+                $('#parments').append(new Option(item.title, item.id));// 下拉菜单里添加元素
+            });
+            layui.form.render("select");
+        },
+        error:function(error){
+            layer.msg('上级菜单加载失败！')
+        }
     })
 })

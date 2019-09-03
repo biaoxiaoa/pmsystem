@@ -9,6 +9,16 @@ class MenuBehavior{
      */
     static public function menu_add($info)
     {
+        if($info['parment_id']!=0){
+            $menu = MenuModel::menuWithID($info['parment_id']);
+            if(empty($menu)){
+                return JsonService::errorResponse('根菜单不存在，请重新选择');
+            }
+        }
+        $menu = MenuModel::menuWithName($info['name']);
+        if(!empty($menu)){
+            return JsonService::errorResponse('菜单名称已存在');
+        }
         if(!isset($info['deskshow'])){
             $info['title'] = $info['name'];
         }else{
@@ -24,12 +34,26 @@ class MenuBehavior{
             $info['pageURL'] = $pageURL;
         }      
         $res = MenuModel::add($info);
+
         if($res==true){
-            return JsonService::errorResponse('菜单增加失败');
-        }else{
             return JsonService::successResponse('菜单增加成功');
+        }else{
+            return JsonService::errorResponse('菜单增加失败');
         }
+    }
+    /**
+     * 获取桌面菜单
+     */
+    static public function menu_desk()
+    {
         
-        // return JsonService::returnData(2000,'已收到请求',$info);
+        return JsonService::returnData(1,'成功',MenuModel::deskMenu());
+    }
+    /**
+     * 所有菜单
+     */
+    static public function menu()
+    {
+        return MenuModel::menu();
     }
 }

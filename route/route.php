@@ -23,6 +23,10 @@ Route::get('coder', 'login/login/Captcha');
 //登录校验
 Route::rule('/submit_login','login/login/submit_login','POST');
 /***********菜单相关**************/
+//获取桌面菜单
+Route::get('menu_desk', 'menu/Index/menu_desk');
+//获取所有菜单
+Route::get('menu_all', 'menu/Index/menu');
 //菜单管理界面
 Route::get('menu', 'menu/Index/index');
 //菜单添加界面

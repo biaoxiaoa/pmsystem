@@ -39,7 +39,8 @@ layui.config({
             },  //如果本地配置为空则给默认值
             desktop: {
                 options: {
-                    url: '/static/json/desktopmenu.json',
+                    // url: '/static/json/desktopmenu.json',
+                    url:'/menu_desk',
                     method: 'get',
                     // data: {  }
                 },    //可以为{}  默认 请求 json/desktopmenu.json
