@@ -27,6 +27,8 @@ Route::rule('/submit_login','login/login/submit_login','POST');
 Route::get('menu', 'menu/Index/index');
 //菜单添加界面
 Route::get('menu_add', 'menu/Index/menu_add');
+//提交菜单添加
+Route::rule('/submit_menu_add','menu/Index/submit_menu_add','POST');
 return [
 
 ];

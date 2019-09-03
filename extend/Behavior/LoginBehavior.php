@@ -1,9 +1,9 @@
 <?php
 namespace Behavior;
 use think\Session;
-use Service\JsonService;
 use app\login\model\Admin as AdminModel;
 use app\login\validate\Admin as AdminValidate;
+use Service\JsonService;
 use Service\TimeService as Time;
 class LoginBehavior{
     static public function login_check($info)

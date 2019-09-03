@@ -108,5 +108,19 @@ layui.use(['table','form'], function () {
             $('#title').css('display','none');
             showDesk = false;
         }
-      });  
+    });  
+    form.on('submit(menu_add)',function(data){
+        $.ajax({
+            type:'post',
+            url:'/submit_menu_add',
+            data:data.field,
+            success:function(response){
+                console.log(response);
+            },
+            error:function(error){
+                console.log(error);
+            }
+        })
+        return false;
+    })
 })
