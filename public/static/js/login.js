@@ -42,6 +42,7 @@ layui.use(['form', 'layer'], function () {
             url: '/submit_login',
             data: data.field,
             success: function (response) {
+                console.log(response);
                 $('#login').removeAttr('disabled');
                 if($('#vercode').val().length>0){
                     verify_code();

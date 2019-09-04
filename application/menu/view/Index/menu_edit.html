@@ -1,0 +1,118 @@
+{extend name="../public/template/template.html"}
+{block name="head"}
+{__block__}
+
+<head>
+    <link rel="stylesheet" href="font-awesome_css">
+    <link rel="stylesheet" href="winui_css">
+    <style>
+        .desk_show {
+            display: none;
+        }
+    </style>
+</head>
+{/block}
+{block name="title"}菜单编辑{/block}
+{block name="body"}
+{__block__}
+
+<body>
+    <div style="width:90%;margin:0 auto;padding-top:20px;">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">* 父级菜单</label>
+                <div class="layui-input-block">
+                    <select id="parments" name="parment_id" lay-verify="parment">
+                        <option value="0">根菜单</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">* 菜单名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" lay-verify="name" placeholder="请输入菜单名称" autocomplete="off"
+                        class="layui-input" maxlength="10" value="{$menu.name}">
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">* 桌面显示</label>
+                <div class="layui-input-block">
+                        {if ( $menu.deskshow == '显示')} 
+                        <input type="checkbox" id="desk" type="checkbox" name="deskshow" lay-skin="switch" lay-text="显示|隐藏"
+                        lay-filter="deskshow" checked="true">
+                        {else /}
+                        <input type="checkbox" id="desk" type="checkbox" name="deskshow" lay-skin="switch" lay-text="显示|隐藏"
+                        lay-filter="deskshow">
+                        {/if}
+                    
+                </div>
+            </div>
+            {if ( $menu.deskshow == '显示')} 
+            <div id="title" class="layui-form-item">
+                <label class="layui-form-label">* 窗口名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" lay-verify="title" placeholder="请输入窗口名称" autocomplete="off"
+                        class="layui-input" maxlength="10" value="{$menu.title}">
+                </div>
+            </div>
+            {else /}
+            <div id="title" class="layui-form-item desk_show">
+                    <label class="layui-form-label">* 窗口名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="title" placeholder="请输入窗口名称" autocomplete="off"
+                            class="layui-input" maxlength="10" value="{$menu.title}">
+                    </div>
+                </div>
+            {/if}
+            <div class="layui-form-item">
+                <label class="layui-form-label">* 菜单图标</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="icon" lay-verify="icon" placeholder="请输入图标名称" autocomplete="off"
+                        class="layui-input" maxlength="20" value="{$menu.icon}">
+                </div>
+                <div class="layui-form-mid layui-word-aux"><a href="https://www.thinkcmf.com/font/font_awesome/icons.html" target="_blank">点击此处进行搜索。</a></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">* 模块名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="module" lay-verify="module" placeholder="请输入模块名称" autocomplete="off"
+                        class="layui-input" maxlength="20" value="{$menu.module}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">* 控制器</label>
+                <div class="layui-input-block">
+                    <input type="text" name="controller" lay-verify="controller" placeholder="请输入控制器名称"
+                        autocomplete="off" class="layui-input" maxlength="40" value="{$menu.controller}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">* 方法名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="action" lay-verify="action" placeholder="请输入方法名称" autocomplete="off"
+                        class="layui-input" maxlength="40" value="{$menu.action}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">路由地址</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pageURL" lay-verify="pageURL" placeholder="请输入路由地址" autocomplete="off" class="layui-input" maxlength="100" value="{$menu.pageURL}">
+                </div>
+                <div class="layui-form-mid layui-word-aux">填写路由设置的地址。为空时根据模块/控制器/方法自动生成。</div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="menu_edit">立即提交</button>
+                </div>
+            </div>
+        </div>
+        <div class="tips">
+            <p>Tips：</p>
+            <p>1.开启【桌面显示】后【窗口名称】必须设置。不开启时【窗口名称】自动填写为【菜单名称】</p>
+            <p>2.【菜单图标】必须要在指定的网站搜索，否则无法显示。</p>
+            <p>3.设置路由地址后请求以路由地址为主。</p>
+        </div>
+    </div>
+    <script src="menu_edit_js"></script>
+</body>
+{/block}

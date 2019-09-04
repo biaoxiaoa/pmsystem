@@ -47,6 +47,7 @@ return [
          * menu
         */
         'menu_js'  => '/static/js/menu/menu.js',
-        'menu_add_js'  => '/static/js/menu/menu_add.js'
+        'menu_add_js'  => '/static/js/menu/menu_add.js',
+        'menu_edit_js'  => '/static/js/menu/menu_edit.js'
     ]
 ];

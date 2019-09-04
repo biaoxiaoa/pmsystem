@@ -3,12 +3,22 @@ namespace Behavior;
 use app\menu\model\Menu as MenuModel;
 use app\menu\validate\Menu as MenuValidate;
 use Service\JsonService;
+use Service\TimeService as Time;
+use Model\MenuPaginator;
 class MenuBehavior{
     /**
      * 新增菜单
      */
     static public function menu_add($info)
     {
+        
+        
+        $validate = new MenuValidate();
+        $checkRes = $validate->check($info);
+        if(!$checkRes){
+           return JsonService::errorResponse($validate->getError());
+        }
+
         if($info['parment_id']!=0){
             $menu = MenuModel::menuWithID($info['parment_id']);
             if(empty($menu)){
@@ -19,8 +29,25 @@ class MenuBehavior{
         if(!empty($menu)){
             return JsonService::errorResponse('菜单名称已存在');
         }
+
+        $info = MenuBehavior::menu_info($info);
+  
+        $res = MenuModel::add($info);
+
+        if($res==true){
+            return JsonService::successResponse('菜单增加成功');
+        }else{
+            return JsonService::errorResponse('菜单增加失败');
+        }
+    }
+    /**
+     * 处理输入的菜单信息
+     */
+    static public function menu_info($info)
+    {
         if(!isset($info['deskshow'])){
             $info['title'] = $info['name'];
+            $info['deskshow']=0;
         }else{
             if($info['deskshow']=='on'){
                 $info['deskshow']=1;
@@ -32,15 +59,15 @@ class MenuBehavior{
             $pageURL = "\index.php".'\\'.$info['module'].'\\'.$info['controller'].'\\'.$info['action'];
             $pageURL = str_replace('\\','/',$pageURL);
             $info['pageURL'] = $pageURL;
-        }      
-        $res = MenuModel::add($info);
-
-        if($res==true){
-            return JsonService::successResponse('菜单增加成功');
-        }else{
-            return JsonService::errorResponse('菜单增加失败');
         }
+        $info['addtime']=Time::getNowTime(0);
+        $info['updatetime']=Time::getNowTime(0);    
+        return $info;
     }
+
+
+
+
     /**
      * 获取桌面菜单
      */
@@ -50,10 +77,25 @@ class MenuBehavior{
         return JsonService::returnData(1,'成功',MenuModel::deskMenu());
     }
     /**
-     * 所有菜单
+     * 菜单列表 
+     * 不传入page、limit参数时，获取全部菜单
      */
-    static public function menu()
+    static public function menu_list($page,$limit)
     {
-        return MenuModel::menu();
+        $data = array();
+        if($limit>1){
+            $data = MenuModel::menu_list(($limit+1) *($page-1),$limit);
+        }else if($limit==1){
+            $data = MenuModel::menu_list($limit *($page-1),$limit);
+        }
+        $back['code']=0;
+        $back['count'] = MenuModel::menuCount();
+        $back['data']=$data;
+        return $back;
+    }
+    static public function menu_all()
+    {
+        $data = MenuModel::menu_list(null,null);
+        return $data;
     }
 }
