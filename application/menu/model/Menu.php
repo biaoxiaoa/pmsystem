@@ -2,7 +2,7 @@
 namespace app\menu\model;
 use app\common\model\Base;
 class Menu extends Base{
-    protected $dateFormat = 'Y-m-d h:m:s';
+    protected $dateFormat = 'Y-m-d H:m:s';
     protected $type = [
         'addtime'  =>  'timestamp',
         'updatetime'  =>  'timestamp',

@@ -7,7 +7,8 @@ class TimeService{
     */
    static public  function getNowTime($type=0)
    {
-       switch ($type) {
+    date_default_timezone_set('PRC');    
+    switch ($type) {
            case 0:
                return time();
                break;

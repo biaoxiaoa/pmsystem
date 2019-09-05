@@ -3,7 +3,8 @@ namespace app\menu\controller;
 use app\menu\model\Menu as MenuModel;
 use app\common\controller\AuthBase;
 use Behavior\MenuBehavior;
-class Index extends AuthBase
+use think\Controller;
+class Index extends Controller
 {
     /**
      * 菜单管理

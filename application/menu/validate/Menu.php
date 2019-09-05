@@ -3,6 +3,7 @@ namespace app\menu\validate;
 use think\Validate;
 class Menu extends Validate{
     protected $rule = [
+        'parment_id' =>'require|number',
         //汉字、字母、数字
         'name' => 'require|length:1,10|chsAlphaNum',
         'title' => 'length:1,10|chsAlphaNum',
@@ -14,6 +15,8 @@ class Menu extends Validate{
         'pageURL' => 'length:0,100',
     ];
     protected $message  = [
+        'parment_id.require'=>'请选择父级菜单',
+        'parment_id.number'=>'父级菜单ID只能为数字',
         'name.require'=>'请输入菜单名称',
         'name.length'=>'菜单名称为1-10个字符',
         'name.chsAlphaNum'=>'菜单名称不能包含特殊字符',

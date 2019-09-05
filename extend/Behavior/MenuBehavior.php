@@ -18,11 +18,14 @@ class MenuBehavior{
         if(!$checkRes){
            return JsonService::errorResponse($validate->getError());
         }
-
-        if($info['parment_id']!=0){
-            $menu = MenuModel::menuWithID($info['parment_id']);
-            if(empty($menu)){
-                return JsonService::errorResponse('根菜单不存在，请重新选择');
+        if(!isset($info['parment_id'])){
+            return JsonService::errorResponse('请选择根菜单');
+        }else{
+            if($info['parment_id']!=0){
+                $menu = MenuModel::menuWithID($info['parment_id']);
+                if(empty($menu)){
+                    return JsonService::errorResponse('根菜单不存在，请重新选择');
+                }
             }
         }
         $menu = MenuModel::menuWithName($info['name']);
@@ -31,7 +34,9 @@ class MenuBehavior{
         }
 
         $info = MenuBehavior::menu_info($info);
-  
+        if(isset($info['code'])){
+            return JsonService::errorResponse($info['msg']);
+        }
         $res = MenuModel::add($info);
 
         if($res==true){
@@ -55,11 +60,30 @@ class MenuBehavior{
                 $info['deskshow']=0;
             }
         }
+
+        if(!isset($info['pageURL'])){
+            if(!isset($info['module']) || !isset($info['controller']) || !isset($info['action'])){
+                $info['code'] = 2004;
+                $info['msg'] = '请填写路由地址或完整页面地址';
+            }else{
+                $pageURL = "\index.php".'\\'.$info['module'].'\\'.$info['controller'].'\\'.$info['action'];
+                $pageURL = str_replace('\\','/',$pageURL);
+                $info['pageURL'] = $pageURL;
+            }
+        }else{
+            if(empty($info['pageURL'])){
+                if(!isset($info['module']) || !isset($info['controller']) || !isset($info['action'])){
+                    $info['code'] = 2004;
+                    $info['msg'] = '请填写完整页面地址';
+                }
+            }
+        }
+        /*
         if(empty($info['pageURL'])){
             $pageURL = "\index.php".'\\'.$info['module'].'\\'.$info['controller'].'\\'.$info['action'];
             $pageURL = str_replace('\\','/',$pageURL);
             $info['pageURL'] = $pageURL;
-        }
+        }*/
         $info['addtime']=Time::getNowTime(0);
         $info['updatetime']=Time::getNowTime(0);    
         return $info;
