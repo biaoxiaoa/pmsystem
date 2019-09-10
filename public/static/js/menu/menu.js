@@ -23,7 +23,7 @@ layui.use(['table','form','layer'], function () {
             title:'菜单添加',
             type:2,
             content:'/menu_add',
-            area:['1080px','530px'],
+            area:['1093px','480px'],
         })
     })
     //绑定工具栏编辑按钮事件

@@ -46,48 +46,6 @@ layui.use(['table','form'], function () {
                 return "菜单图标名称不能超过40个字符";
             }
         },
-        module:function(value,item){
-            if(value.length==0){
-                return "请输入菜单所属模块";
-            }
-            if(regEn.test(value)||regCn.test(value)){
-                return "模块名称中不能包含特殊字符";
-            }
-            if(!chinese.test(value)){
-                return "模块名称中不能包含中文";
-            }
-            if(value.length>20){
-                return "模块名称不能超过20个字符";
-            }
-        },
-        controller:function(value,item){
-            if(value.length==0){
-                return "请输入菜单控制器名称";
-            }
-            if(regEn.test(value)||regCn.test(value)){
-                return "控制器名称中不能包含特殊字符";
-            }
-            if(!chinese.test(value)){
-                return "控制器名称中不能包含中文";
-            }
-            if(value.length>40){
-                return "控制器名称不能超过40个字符";
-            }
-        },
-        action:function(value,item){
-            if(value.length==0){
-                return "请输入方法名称";
-            }
-            if(regEn.test(value)||regCn.test(value)){
-                return "方法名中不能包含特殊字符";
-            }
-            if(!chinese.test(value)){
-                return "方法名中不能包含中文";
-            }
-            if(value.length>40){
-                return "方法名不能超过40个字符";
-            }
-        },
         pageURL:function(value,item){
             if(value.length>0){
                 if(!chinese.test(value)){
@@ -132,7 +90,6 @@ layui.use(['table','form'], function () {
     $.ajax({
         url: '/menu_all',
         dataType: 'json',
-            //查询状态为正常的所有机构类型
         type: 'get',
         success: function (data) {
            

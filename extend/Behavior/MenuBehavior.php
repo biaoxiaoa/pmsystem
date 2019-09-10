@@ -58,9 +58,10 @@ class MenuBehavior{
                 $info['deskshow']=1;
             }else{
                 $info['deskshow']=0;
+                $info['title'] = $info['name'];
             }
         }
-
+        /*
         if(!isset($info['pageURL'])){
             if(!isset($info['module']) || !isset($info['controller']) || !isset($info['action'])){
                 $info['code'] = 2004;
@@ -78,14 +79,13 @@ class MenuBehavior{
                 }
             }
         }
-        /*
+        
         if(empty($info['pageURL'])){
             $pageURL = "\index.php".'\\'.$info['module'].'\\'.$info['controller'].'\\'.$info['action'];
             $pageURL = str_replace('\\','/',$pageURL);
             $info['pageURL'] = $pageURL;
         }*/
-        $info['addtime']=Time::getNowTime(0);
-        $info['updatetime']=Time::getNowTime(0);    
+        $info['updatetime']=Time::getNowTime(1);    
         return $info;
     }
 
