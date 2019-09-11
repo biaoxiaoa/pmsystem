@@ -42,7 +42,7 @@ class Index extends Controller
             return "无法获取菜单信息";
         }
         $this->assign('menu',$menu);
-        return $this->fetch('menu_edit');
+        return $this->fetch('menu_edit2');
     }
     /**
      * 提交菜单编辑

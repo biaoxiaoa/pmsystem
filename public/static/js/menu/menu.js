@@ -23,7 +23,7 @@ layui.use(['table','form','layer'], function () {
             title:'菜单添加',
             type:2,
             content:'/menu_add',
-            area:['1093px','480px'],
+            area:['1140px','480px'],
         })
     })
     //绑定工具栏编辑按钮事件
@@ -47,7 +47,7 @@ layui.use(['table','form','layer'], function () {
             title:'菜单编辑',
             type:2,
             content:url,
-            area:['840px','675px'],
+            area:['1140px','480px'],
         })
         // openEditWindow(checkStatus.data[0].id);
     });

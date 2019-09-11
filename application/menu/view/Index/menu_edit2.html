@@ -53,7 +53,7 @@
                         <label class="layui-form-label">* 窗口名称</label>
                         <div class="layui-input-inline">
                             <input type="text" name="title" lay-verify="title" placeholder="请输入窗口名称" autocomplete="off"
-                                class="layui-input" maxlength="10">
+                                class="layui-input" maxlength="10" value="{$menu.title}">
                         </div>
                     </div>
                 </div>
@@ -63,21 +63,21 @@
                     <label class="layui-form-label">* 菜单名称</label>
                     <div class="layui-input-inline">
                         <input type="text" name="name" lay-verify="name" placeholder="请输入菜单名称" autocomplete="off"
-                            class="layui-input" maxlength="20">
+                            class="layui-input" maxlength="20" value="{$menu.name}">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">* 菜单图标</label>
                     <div class="layui-input-inline">
                         <input type="text" name="icon" lay-verify="icon" placeholder="请输入图标名称" autocomplete="off"
-                            class="layui-input" maxlength="20">
+                            class="layui-input" maxlength="20" value="{$menu.icon}">
                     </div>
                 </div>
                 <div class="layui-inline">
                         <label class="layui-form-label">页面地址</label>
                         <div class="layui-input-inline">
                             <input type="text" name="pageURL" lay-verify="pageURL" placeholder="请输入路由地址" autocomplete="off"
-                                class="layui-input" maxlength="100">
+                                class="layui-input" maxlength="100" value="{$menu.pageURL}">
                         </div>
                 </div>
             </div>
