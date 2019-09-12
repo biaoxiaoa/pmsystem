@@ -59,6 +59,9 @@ Route::rule('/submit_menu_add','menu/Index/submit_menu_add','POST');
 Route::rule('/submit_menu_delete','menu/Index/menu_delete','POST');
 
 
+//项目
+Route::get('project', 'project/Index/index');
+Route::get('project_add', 'project/Index/add');
 return [
 
 ];

@@ -51,21 +51,37 @@
                     <label class="layui-form-label">* 桌面显示</label>
                     <div class="layui-input-inline">
                         <div class="line">
-                            <input type="checkbox" id="desk" type="checkbox" name="deskshow" lay-skin="switch"
+                                {if ( $menu.deskshow == '显示')} 
+                                    <input type="checkbox" id="desk" type="checkbox" name="deskshow" lay-skin="switch"
+                                lay-text="显示|隐藏" lay-filter="deskshow" checked>
+                                {else /} 
+                                <input type="checkbox" id="desk" type="checkbox" name="deskshow" lay-skin="switch"
                                 lay-text="显示|隐藏" lay-filter="deskshow">
+                                {/if}
+                            
                         </div>
-
                     </div>
                 </div>
 
                 <div class="layui-inline">
-                    <div id="title" class="layui-inline desk_show">
-                        <label class="layui-form-label">* 窗口名称</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="title" lay-verify="title" placeholder="请输入窗口名称" autocomplete="off"
-                                class="layui-input" maxlength="10" value="{$menu.title}">
+                    {if ( $menu.deskshow == '显示')} 
+                    <div id="title" class="layui-inline">
+                            <label class="layui-form-label">* 窗口名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" lay-verify="title" placeholder="请输入窗口名称" autocomplete="off"
+                                    class="layui-input" maxlength="10" value="{$menu.title}">
+                            </div>
                         </div>
-                    </div>
+                    {else /} 
+                    <div id="title" class="layui-inline desk_show">
+                            <label class="layui-form-label">* 窗口名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" lay-verify="title" placeholder="请输入窗口名称" autocomplete="off"
+                                    class="layui-input" maxlength="10" value="{$menu.title}">
+                            </div>
+                        </div>
+                    {/if}
+                    
                 </div>
             </div>
             <div class="layui-form-item">

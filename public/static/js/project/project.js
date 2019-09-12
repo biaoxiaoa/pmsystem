@@ -1,0 +1,92 @@
+layui.use(['table','form','layer'], function () {
+    var table = layui.table;
+    var layer = layui.layer;
+    // table.render({
+    //     elem: '#list',
+    //     url: '/menu_list',
+    //     page: true,
+    //     cols: [[ //表头
+    //         { type: 'checkbox', fixed: 'left' },
+    //         { field: 'id', title: 'ID', width: 80, sort: true, align: 'center' }
+    //         , { field: 'title', title: '菜单名称', align: 'center'}
+    //         , { field: 'deskshow', title: '桌面是否显示', align: 'center'}
+    //         , { field: 'icon', title: '菜单图标', align: 'center' }
+    //         , { field: 'pageURL', title: '页面地址', align: 'center' }
+    //         , { field: 'addtime', title: '添加时间', align: 'center' }
+    //     ]]
+    // })
+    $('#reloadTable').on('click', function () {
+        table.reload("list", {});
+    })
+    $('#deleteMenu').on('click', function () {
+        var checkStatus = table.checkStatus("list");
+        var checkCount = checkStatus.data.length;
+        if (checkCount < 1) {
+            layer.msg('请选择一条数据', {
+                time: 2000
+            });
+            return false;
+        }
+        layer.confirm('真的删除行么', function (index) {
+            var ids = '';
+            $(checkStatus.data).each(function (index, item) {
+                ids += item.id + ',';
+            });
+            var datas = { 'ids': ids };
+            $.ajax({
+                type: 'post',
+                url: '/submit_menu_delete',
+                data: datas,
+                success: function (response) {
+                    layer.msg(response.msg, {
+                        time: 2000
+                    });
+                    table.reload("list", {});
+                    parent.winui.desktop.init();
+                },
+                error: function (error) {
+                }
+            })
+            layer.close(index);
+        });
+    });
+
+    /**
+     *添加项目 
+     */
+    $('#addProject').on('click', function () {
+        layer.open({
+            title:'项目添加',
+            type:2,
+            content:'/project_add',
+            area:['1140px','480px'],
+        })
+    })
+    //绑定工具栏编辑按钮事件
+    $('#editMenu').on('click', function () {
+        var checkStatus = table.checkStatus("list");
+        var checkCount = checkStatus.data.length;
+        if (checkCount < 1) {
+            layer.msg('请选择一条数据', {
+                time: 2000
+            });
+            return false;
+        }
+        if (checkCount > 1) {
+            layer.msg('只能选择一条数据', {
+                time: 2000
+            });
+            return false;
+        }
+        var url = '/menu_edit/?id=' + checkStatus.data[0].id;
+        layer.open({
+            title:'菜单编辑',
+            type:2,
+            content:url,
+            area:['1074px','480px'],
+        })
+        // openEditWindow(checkStatus.data[0].id);
+    });
+    
+
+})

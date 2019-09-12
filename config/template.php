@@ -48,6 +48,12 @@ return [
         */
         'menu_js'  => '/static/js/menu/menu.js',
         'menu_add_js'  => '/static/js/menu/menu_add.js',
-        'menu_edit_js'  => '/static/js/menu/menu_edit.js'
+        'menu_edit_js'  => '/static/js/menu/menu_edit.js',
+        /**
+         * project
+        */
+        'project_js'  => '/static/js/project/project.js',
+        'project_add_js'  => '/static/js/project/project_add.js',
+        'project_edit_js'  => '/static/js/project/project_edit.js',
     ]
 ];

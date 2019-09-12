@@ -1,0 +1,55 @@
+{extend name="../public/template/template.html"}
+{block name="head"}
+{__block__}
+
+<head>
+    <link rel="stylesheet" href="font-awesome_css">
+    <link rel="stylesheet" href="winui_css">
+    <style>
+        .start {
+            display: none;
+        }
+    </style>
+</head>
+{/block}
+{block name="title"}添加项目{/block}
+{block name="body"}
+{__block__}
+
+<body>
+    <div style="width:90%;margin:0 auto;padding-top:20px;">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目编号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="number" lay-verify="number" placeholder="请输入项目编号" autocomplete="off"
+                        class="layui-input" maxlength="10">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" lay-verify="name" placeholder="请输入项目名称" autocomplete="off"
+                        class="layui-input" maxlength="50">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目状态</label>
+                <div class="layui-input-block">
+                    <select name="status" lay-filter="status">
+                        <option value="0" selected>未开始</option>
+                        <option value="1">进行中</option>
+                    </select>
+                </div>
+            </div>
+            <div id="start_time" class="layui-form-item start">
+                <label class="layui-form-label">开始时间</label>
+                <div class="layui-input-block">
+                    <input id="start"  name="start_time" type="text" placeholder="请设置开始时间" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="project_add_js"></script>
+</body>
+{/block}
