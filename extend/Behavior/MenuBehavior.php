@@ -13,6 +13,71 @@ class MenuBehavior{
     {
         
         
+        $res = MenuBehavior::menu_check($info);
+        if ($res!==true) {
+            return $res;
+        }
+        $menu = MenuModel::menuWithName($info['name']);
+        if(!empty($menu)){
+            return JsonService::errorResponse('菜单名称已存在');
+        }
+        $info = MenuBehavior::menu_info($info);
+        if(isset($info['code'])){
+            return JsonService::errorResponse($info['msg']);
+        }
+        $res = MenuModel::add($info);
+
+        if($res==true){
+            return JsonService::successResponse('菜单增加成功');
+        }else{
+            return JsonService::errorResponse('菜单增加失败');
+        }
+    }
+    static public function menu_delete($ids)
+    {
+        if(empty($ids)){
+            return JsonService::errorResponse('参数错误');
+        }
+        $res = MenuModel::menu_delete($ids);
+
+        if($res==true){
+            return JsonService::successResponse('菜单已删除');
+        }else{
+            return JsonService::errorResponse('菜单删除失败');
+        }
+    }
+    /**
+     * 编辑菜单
+     */
+    static public function menu_edit($info)
+    {
+        $res = MenuBehavior::menu_check($info);
+        if ($res!==true) {
+            return $res;
+        }
+        if($info['name']!==$info['old_name']){
+            $menu = MenuModel::menuWithName($info['name']);
+            if(!empty($menu)){
+                return JsonService::errorResponse('菜单名称已存在');
+            }
+        }
+        $info = MenuBehavior::menu_info($info);
+        if(isset($info['code'])){
+            return JsonService::errorResponse($info['msg']);
+        }
+        $res = MenuModel::menu_edit($info);
+        if($res==false){
+            return JsonService::errorResponse('菜单编辑失败');
+        }else{
+            return JsonService::successResponse('菜单编辑成功');
+        }
+    }
+    /***
+     * 
+     * 菜单信息校验
+     */
+    static public function menu_check($info)
+    {
         $validate = new MenuValidate();
         $checkRes = $validate->check($info);
         if(!$checkRes){
@@ -28,25 +93,14 @@ class MenuBehavior{
                 }
             }
         }
-        $menu = MenuModel::menuWithName($info['name']);
-        if(!empty($menu)){
-            return JsonService::errorResponse('菜单名称已存在');
-        }
-
-        $info = MenuBehavior::menu_info($info);
-        if(isset($info['code'])){
-            return JsonService::errorResponse($info['msg']);
-        }
-        $res = MenuModel::add($info);
-
-        if($res==true){
-            return JsonService::successResponse('菜单增加成功');
-        }else{
-            return JsonService::errorResponse('菜单增加失败');
-        }
+        
+        return true;
     }
+
     /**
      * 处理输入的菜单信息
+     * 判断是否显示在桌面
+     * 添加更新时间 
      */
     static public function menu_info($info)
     {
@@ -61,36 +115,9 @@ class MenuBehavior{
                 $info['title'] = $info['name'];
             }
         }
-        /*
-        if(!isset($info['pageURL'])){
-            if(!isset($info['module']) || !isset($info['controller']) || !isset($info['action'])){
-                $info['code'] = 2004;
-                $info['msg'] = '请填写路由地址或完整页面地址';
-            }else{
-                $pageURL = "\index.php".'\\'.$info['module'].'\\'.$info['controller'].'\\'.$info['action'];
-                $pageURL = str_replace('\\','/',$pageURL);
-                $info['pageURL'] = $pageURL;
-            }
-        }else{
-            if(empty($info['pageURL'])){
-                if(!isset($info['module']) || !isset($info['controller']) || !isset($info['action'])){
-                    $info['code'] = 2004;
-                    $info['msg'] = '请填写完整页面地址';
-                }
-            }
-        }
-        
-        if(empty($info['pageURL'])){
-            $pageURL = "\index.php".'\\'.$info['module'].'\\'.$info['controller'].'\\'.$info['action'];
-            $pageURL = str_replace('\\','/',$pageURL);
-            $info['pageURL'] = $pageURL;
-        }*/
         $info['updatetime']=Time::getNowTime(1);    
         return $info;
     }
-
-
-
 
     /**
      * 获取桌面菜单
@@ -117,6 +144,9 @@ class MenuBehavior{
         $back['data']=$data;
         return $back;
     }
+    /**
+     * 获取全部的菜单
+     */
     static public function menu_all()
     {
         $data = MenuModel::menu_list(null,null);

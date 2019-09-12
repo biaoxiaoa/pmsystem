@@ -4,6 +4,7 @@ use app\menu\model\Menu as MenuModel;
 use app\common\controller\AuthBase;
 use Behavior\MenuBehavior;
 use think\Controller;
+use think\Session;
 class Index extends Controller
 {
     /**
@@ -28,6 +29,11 @@ class Index extends Controller
         $info = input('post.');
         return MenuBehavior::menu_add($info);
     }
+    public function menu_delete()
+    {
+        $ids = input('post.ids');
+        return MenuBehavior::menu_delete($ids);
+    }
     /**
      * 编辑菜单
      */
@@ -41,6 +47,8 @@ class Index extends Controller
         if(empty($menu)){
             return "无法获取菜单信息";
         }
+        $session = new Session();
+        $session->set('old_name',$menu['name']);
         $this->assign('menu',$menu);
         return $this->fetch('menu_edit2');
     }
@@ -50,8 +58,10 @@ class Index extends Controller
     public function submit_menu_edit()
     {
         $info = input('post.');
+        $session = new Session();
+        $info['old_name']=$session->get('old_name');
+        return MenuBehavior::menu_edit($info);
     }
-
 
     /**
      * 桌面菜单

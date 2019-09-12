@@ -38,6 +38,16 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-inline">
+                    <label class="layui-form-label">* ID</label>
+                    <div class="layui-input-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="id" placeholder="ID" autocomplete="off"
+                                class="layui-input" maxlength="10" value="{$menu.id}" disabled>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="layui-inline">
                     <label class="layui-form-label">* 桌面显示</label>
                     <div class="layui-input-inline">
                         <div class="line">
@@ -74,26 +84,27 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                        <label class="layui-form-label">页面地址</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="pageURL" lay-verify="pageURL" placeholder="请输入路由地址" autocomplete="off"
-                                class="layui-input" maxlength="100" value="{$menu.pageURL}">
-                        </div>
+                    <label class="layui-form-label">页面地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="pageURL" lay-verify="pageURL" placeholder="请输入路由地址" autocomplete="off"
+                            class="layui-input" maxlength="100" value="{$menu.pageURL}">
+                    </div>
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit="" lay-filter="menu_add">立即提交</button>
+                    <button class="layui-btn" lay-submit="" lay-filter="menu_edit">立即提交</button>
                 </div>
             </div>
         </div>
         <div class="tips">
             <p>Tips：</p>
             <p>1.开启【桌面显示】后【窗口名称】必须设置。不开启时【窗口名称】自动填写为【菜单名称】</p>
-            <p>2.<a href="https://www.thinkcmf.com/font/font_awesome/icons.html" target="_blank">点击此处进行搜索</a>【菜单图标】，否则无法显示。</p>
+            <p>2.<a href="https://www.thinkcmf.com/font/font_awesome/icons.html"
+                    target="_blank">点击此处进行搜索</a>【菜单图标】，否则无法显示。</p>
             <p>3.建议设置路由地址。【路由地址】、【完整地址】必须填写一项</p>
         </div>
     </div>
-    <script src="menu_add_js"></script>
+    <script src="menu_edit_js"></script>
 </body>
 {/block}

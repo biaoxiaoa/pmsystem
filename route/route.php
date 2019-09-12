@@ -46,11 +46,17 @@ Route::get('menu', 'menu/Index/index');
 //菜单编辑界面
 Route::get('menu_edit', 'menu/Index/menu_edit');
 
+//提交菜单编辑
+Route::rule('/submit_menu_edit','menu/Index/submit_menu_edit','POST');
+
 //菜单添加界面
 Route::get('menu_add', 'menu/Index/menu_add');
 
 //提交菜单添加
 Route::rule('/submit_menu_add','menu/Index/submit_menu_add','POST');
+
+//菜单删除
+Route::rule('/submit_menu_delete','menu/Index/menu_delete','POST');
 
 
 return [

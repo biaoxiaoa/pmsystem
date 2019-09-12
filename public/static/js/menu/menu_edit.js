@@ -68,23 +68,23 @@ layui.use(['table','form'], function () {
         }
     });  
     form.on('submit(menu_edit)',function(data){
-        // $.ajax({
-        //     type:'post',
-        //     url:'/submit_menu_add',
-        //     data:data.field,
-        //     success:function(response){
-        //         if(response.code==2000){
-        //             location.reload();
-        //             parent.frameElement.contentWindow.layui.table.reload('list')
-        //             parent.parent.winui.desktop.init();
-        //         }else{
-        //             layer.msg(response.msg)
-        //         }
-        //     },
-        //     error:function(error){
-        //         console.log(error);
-        //     }
-        // })
+        $.ajax({
+            type:'post',
+            url:'/submit_menu_edit',
+            data:data.field,
+            success:function(response){
+                if(response.code==2000){
+                    location.reload();
+                    parent.frameElement.contentWindow.layui.table.reload('list')
+                    parent.parent.winui.desktop.init();
+                }else{
+                    layer.msg(response.msg)
+                }
+            },
+            error:function(error){
+                console.log(error);
+            }
+        })
         return false;
     })
     $.ajax({

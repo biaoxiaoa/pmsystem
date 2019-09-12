@@ -62,8 +62,24 @@ class Menu extends Base{
         $model = new Menu();
         return count($model->select());
     }
+    /***
+     * 编辑菜单
+     */
+    static public function menu_edit($info)
+    {
+        $menu = new Menu;
+        return $menu->allowField(true)->save($info,['id' => $info['id']]);
+    }
 
-
+    /**
+     * 删除菜单
+     * ids 菜单ID
+    */
+    static public function menu_delete($ids)
+    {
+        return Menu::destroy($ids);
+    }
+    
     public function getDeskShowAttr($value)
     {
         $status = ['0'=>'隐藏','1'=>'显示'];
